@@ -1,21 +1,16 @@
-# tugas1_login
-Plain Login Page built using Flutter.
+# app
 
-Created in order to accomplish Assignment 1 Praktikum Pemrograman Aplikasi Mobile.
-
-by:
-```
-Name  : Habib Al Fauzan
-NIM   : 124200070
-Plug  : C
-```
+A new Flutter project.
 
 ## Getting Started
-To run this app, run following command:
-```
-flutter pub get
-flutter run
-```
 
-## Screenshot
-<img src="assets/Screenshot_1663393466.png" height="400em"/>&nbsp;<img src="assets/Screenshot_1663393492.png" height="400em" />
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
