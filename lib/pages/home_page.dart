@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -139,14 +140,17 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _showForm = true;
-          });
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: _showForm
+        ? null
+        : FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          _showForm = true;
+        });
+      },
+      child: Icon(Icons.add),
+    ),
+
     );
   }
 
@@ -196,15 +200,32 @@ class _HomePageState extends State<HomePage> {
             onChanged: (value) {},
           ),
           SizedBox(height: 20),
-          ElevatedButton.icon(
-            onPressed: () {
-              // Placeholder for uploading photo or video
-            },
-            icon: Icon(Icons.camera_alt),
-            label: Text('Upload Photo or Video'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+          SizedBox(
+            width: double.infinity, // Set width to match other forms
+            child: TextButton(
+              onPressed: () {
+                // Placeholder for uploading photo or video from local storage
+              },
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all(Colors.blue), // Change the color of the button
+                foregroundColor: MaterialStateProperty.all(Colors.white), // Change the text color
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Adjust padding for increased height
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.camera_alt_outlined, size: 30), // Increase the size of the icon
+                  SizedBox(width: 10), // Adjust the space between the icon and text
+                  Text(
+                    'Upload Photo or Video',
+                    style: TextStyle(fontSize: 18), // Increase the font size of the text
+                  ),
+                ],
               ),
             ),
           ),
@@ -266,15 +287,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Placeholder for submitting complaint
-              _handleSubmit();
-            },
-            child: Text('Submit'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                // Placeholder for submitting complaint
+                _handleSubmit();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ),
@@ -283,11 +318,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   void _handleSubmit() {
     // Placeholder for handling form submission
     // Reset the form visibility after submission
     setState(() {
       _showForm = false;
+
     });
   }
 }
