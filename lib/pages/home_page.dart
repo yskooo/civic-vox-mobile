@@ -216,10 +216,10 @@ class _HomePageState extends State<HomePage> {
                 foregroundColor: MaterialStateProperty.all(Colors.white), // Change the text color
                 padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15, horizontal: 20)), // Adjust padding for increased height
               ),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.camera_alt_outlined, size: 30), // Increase the size of the icon
+                  Icon(Icons.camera_alt_outlined, size: 50), // Increase the size of the icon
                   SizedBox(width: 10), // Adjust the space between the icon and text
                   Text(
                     'Upload Photo or Video',
@@ -294,8 +294,14 @@ class _HomePageState extends State<HomePage> {
                 // Placeholder for submitting complaint
                 _handleSubmit();
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
                 child: Text(
                   'Submit',
                   style: TextStyle(
@@ -303,12 +309,6 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
