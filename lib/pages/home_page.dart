@@ -1,3 +1,4 @@
+import 'package:app/pages/rating_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -320,11 +321,18 @@ class _HomePageState extends State<HomePage> {
 
 
   void _handleSubmit() {
-    // Placeholder for handling form submission
-    // Reset the form visibility after submission
-    setState(() {
-      _showForm = false;
-
+    // Navigate to the rating page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RatingPage()),
+    ).then((value) {
+      // Handle callback from the rating page
+      if (value == 'edit_complaint') {
+        // Handle editing complaint
+        setState(() {
+          _showForm = true;
+        });
+      }
     });
   }
 }
