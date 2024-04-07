@@ -132,8 +132,8 @@ class AuthForm extends StatelessWidget {
         SizedBox(height: 8), // Adjust spacing between label and text field
         TextFormField(
           decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey[200],
+            filled: false,
+            fillColor: Colors.grey[100],
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
