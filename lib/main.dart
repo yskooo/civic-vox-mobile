@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
-import 'pages/sign_up_page.dart';
+import 'pages/user_sign_up_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,14 +63,6 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Text(
-                        //   'Login',
-                        //   style: TextStyle(
-                        //     color: Colors.blue,
-                        //     fontSize: 26,
-                        //     // fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
                         SizedBox(width: 10), // Adjust the spacing between text and icon
                         Icon(
                           Icons.person_rounded,
@@ -90,7 +82,7 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(height: 20),
-                    AuthButton(
+                    LoginPageAuthButton( // Modified reference to AuthButton
                       text: 'Log In',
                       onPressed: () {
                         // Simulated authentication logic (replace with actual logic)
@@ -140,8 +132,9 @@ class LoginPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );                      },
+                          MaterialPageRoute(builder: (context) => UserSignUpPage()),
+                        );
+                      },
                       child: Text(
                         'Don\'t have an account? Sign Up',
                         style: TextStyle(color: Colors.black),
@@ -158,37 +151,11 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class AuthForm extends StatelessWidget {
-  final String labelText;
-  final bool obscureText;
-
-  const AuthForm({
-    Key? key,
-    required this.labelText,
-    required this.obscureText,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.grey[200],
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        labelText: labelText,
-      ),
-      obscureText: obscureText,
-    );
-  }
-}
-
-class AuthButton extends StatelessWidget {
+class LoginPageAuthButton extends StatelessWidget { // Define AuthButton inside LoginPage
   final String text;
   final VoidCallback onPressed;
 
-  const AuthButton({
+  const LoginPageAuthButton({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -209,6 +176,46 @@ class AuthButton extends StatelessWidget {
         text,
         style: TextStyle(color: Colors.white),
       ),
+    );
+  }
+}
+
+
+class AuthForm extends StatelessWidget {
+  final String labelText;
+  final bool obscureText;
+
+  const AuthForm({
+    Key? key,
+    required this.labelText,
+    required this.obscureText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          labelText,
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8), // Adjust spacing between label and text field
+        TextField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            hintText: 'Enter your $labelText', // Hint text for the field
+          ),
+          obscureText: obscureText,
+        ),
+      ],
     );
   }
 }
