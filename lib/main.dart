@@ -16,7 +16,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: Stack(
+        children: [
+          // Background image
+          Image.asset(
+            'assets/bg.png',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          // Content
+          LoginPage(),
+        ],
+      ),
     );
   }
 }

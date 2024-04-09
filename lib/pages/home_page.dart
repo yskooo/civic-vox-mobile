@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.group, color: Colors.blue),
-          label: 'Community',
+          label: 'Complaints',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.notifications, color: Colors.blue),
