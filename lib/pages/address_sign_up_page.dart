@@ -64,11 +64,11 @@ class _AddressSignUpPageState extends State<AddressSignUpPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Purok', // Add comma here
+                                'Purok',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                    fontSize:16,
+                                  fontSize: 16,
                                 ),
                               ),
                               SizedBox(height: 8),
