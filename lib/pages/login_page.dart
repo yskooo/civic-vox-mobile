@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
                           obscureText: true,
                         ),
                         SizedBox(height: 20),
-                        LoginPageAuthButton(
+                        AuthButton(
                           text: 'Log In',
                           onPressed: () {
                             // Simulated authentication logic (replace with actual logic)
@@ -159,11 +159,11 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginPageAuthButton extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const LoginPageAuthButton({
+  const AuthButton({
     Key? key,
     required this.text,
     required this.onPressed,
