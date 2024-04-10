@@ -1,7 +1,6 @@
-import 'package:app/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
-import 'login_page.dart';
+import 'auth_form.dart';
+import 'home_page.dart';
 
 class AddressSignUpPage extends StatefulWidget {
   @override
@@ -14,6 +13,9 @@ class _AddressSignUpPageState extends State<AddressSignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Address Sign Up'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -74,13 +76,14 @@ class _AddressSignUpPageState extends State<AddressSignUpPage> {
               SizedBox(height: 20),
               // Submit button
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomePage()),
-                    );
-                  },
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   minimumSize: const Size.fromHeight(50),

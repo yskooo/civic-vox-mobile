@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'auth_form.dart';
 import 'home_page.dart';
 import 'user_sign_up_page.dart';
 
@@ -187,43 +188,4 @@ class LoginPageAuthButton extends StatelessWidget {
   }
 }
 
-class AuthForm extends StatelessWidget {
-  final String labelText;
-  final bool obscureText;
 
-  const AuthForm({
-    Key? key,
-    required this.labelText,
-    required this.obscureText,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 16
-          ),
-        ),
-        SizedBox(height: 8), // Adjust spacing between label and text field
-        TextField(
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey[200],
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            hintText: 'Enter your $labelText', // Hint text for the field
-          ),
-          obscureText: obscureText,
-          style: TextStyle(fontSize: 18), // Set text field font size to 18
-        ),
-      ],
-    );
-  }
-}

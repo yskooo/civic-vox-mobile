@@ -1,149 +1,122 @@
 import 'package:flutter/material.dart';
-import 'address_sign_up_page.dart';
-import '../main.dart';
-import 'login_page.dart';
+import 'auth_form.dart';
+import 'personal_sign_up_page.dart';
 
 class UserSignUpPage extends StatelessWidget {
+  const UserSignUpPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign Up'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              AuthForm(
-                labelText: 'First Name',
-                obscureText: false,
+      body: Stack(
+        children: [
+          // Background image
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/bg.png'),
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Last Name',
-                obscureText: false,
+            ),
+          ),
+          // Logo at the top
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.05,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: FractionallySizedBox(
+                widthFactor: 0.5,
+                child: Image.asset(
+                  'assets/images/civicvoxlogo.png',
+                  fit: BoxFit.contain,
+                ),
               ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Middle Name (Optional)',
-                obscureText: false,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Age',
-                obscureText: false,
-                keyboardType: TextInputType.number,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Gender',
-                obscureText: false,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Phone Number',
-                obscureText: false,
-                keyboardType: TextInputType.phone,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Email',
-                obscureText: false,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Password',
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              AuthForm(
-                labelText: 'Confirm Password',
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              // Next button
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddressSignUpPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent[700],
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          // Content
+          Positioned.fill(
+            bottom: 0,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD3DFF6),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        AuthForm(
+                          labelText: 'Username',
+                          obscureText: false,
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        AuthForm(
+                          labelText: 'Email',
+                          obscureText: false,
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        AuthForm(
+                          labelText: 'Password',
+                          obscureText: true,
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        AuthForm(
+                          labelText: 'Confirm Password',
+                          obscureText: true,
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                        NextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const PersonalSignUpPage()),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                child: Text(
-                  'Next',
-                  style: TextStyle(color: Colors.white),
-                ),
               ),
-              SizedBox(height: 20),
-              // Already have an account? Login text
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-                child: Text(
-                  'Already have an account? Login',
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
 
-class AuthForm extends StatelessWidget {
-  final String labelText;
-  final bool obscureText;
-  final TextInputType? keyboardType;
+class NextButton extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  const AuthForm({
+  const NextButton({
     Key? key,
-    required this.labelText,
-    required this.obscureText,
-    this.keyboardType,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF000AFF),
+        minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
         ),
-        SizedBox(height: 8), // Adjust spacing between label and text field
-        TextFormField(
-          decoration: InputDecoration(
-            filled: false,
-            fillColor: Colors.grey[100],
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            hintText: 'Enter your $labelText', // Hint text for the field
-          ),
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-        ),
-      ],
+      ),
+      onPressed: onPressed,
+      child: Text(
+        'Next',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }
