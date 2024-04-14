@@ -14,8 +14,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      drawer: _buildDrawer(),
       body: Stack(
         children: [
           // Background image
@@ -27,12 +25,19 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          // Glassmorphic title
+          Positioned(
+            left: 16,
+            right: 16,
+            top: 50,
+            child: _buildGlassTitle('COMMUNITY'),
+          ),
           // Content
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(
-                child: _showForm ? _buildForm() : _buildWelcomeMessage(),
+                child: _showForm ? _buildForm() : SizedBox(), // Return SizedBox if you don't want to display anything
               ),
             ),
           ),
@@ -52,127 +57,87 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: Text('Community'),
-      centerTitle: true,
-      actions: [
-        IconButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Search'),
-                  content: Text('Placeholder for search functionality'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-          icon: Icon(Icons.search),
+  Widget _buildGlassTitle(String title) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 40, horizontal: 0),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.3), // Glass effect color
+        borderRadius: BorderRadius.circular(20), // Rounded corners
+      ),
+      child: Center( // Center the text
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
         ),
-      ],
+      ),
     );
   }
 
-  Drawer _buildDrawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
+  Container _buildBottomNavigationBar() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.3), // Glass effect color
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ), // Rounded corners for top side only
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
           ),
-          ListTile(
-            title: Text('Report an Issue'),
-            onTap: () {
-              Navigator.pop(context); // Close the drawer
-              // Placeholder for reporting issues feature
-              _showDialog('Report an Issue',
-                  'Placeholder for reporting issues feature');
-            },
-          ),
-          ListTile(
-            title: Text('Government Resources'),
-            onTap: () {
-              Navigator.pop(context); // Close the drawer
-              // Placeholder for accessing government resources feature
-              _showDialog('Government Resources',
-                  'Placeholder for accessing government resources feature');
-            },
-          ),
-          ListTile(
-            title: Text('Civic Matters'),
-            onTap: () {
-              Navigator.pop(context); // Close the drawer
-              // Placeholder for getting updates on civic matters feature
-              _showDialog('Civic Matters',
-                  'Placeholder for getting updates on civic matters feature');
-            },
-          ),
+        ], // Add boxShadow for glass effect
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          _buildNavigationBarItem(Icons.home, 'Home'),
+          _buildNavigationBarItem(Icons.group, 'Complaints'),
+          _buildNavigationBarItem(Icons.notifications, 'Notifications'),
+          _buildNavigationBarItem(Icons.person, 'Profile'),
         ],
       ),
     );
   }
 
-  BottomNavigationBar _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.blue),
-          label: 'Home',
+
+
+  BottomNavigationBarItem _buildNavigationBarItem(IconData icon, String label) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.transparent, // Set the color to transparent
+          borderRadius: BorderRadius.circular(20), // Rounded corners
+          border: Border.all(color: Colors.black, width: 1), // Border for selected icon
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ], // Add boxShadow for glass effect
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.group, color: Colors.blue),
-          label: 'Complaints',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications, color: Colors.blue),
-          label: 'Notifications',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person, color: Colors.blue),
-          label: 'Profile',
-        ),
-      ],
-      selectedItemColor: Colors.blue,
+        child: Icon(icon),
+      ),
+      label: label,
     );
   }
 
-  Widget _buildWelcomeMessage() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'Welcome to the Citizen App!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
-  }
+
+
 
   Widget _buildForm() {
     return Container(
