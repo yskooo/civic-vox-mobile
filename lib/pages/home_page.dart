@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:app/pages/rating_page.dart';
 
@@ -15,13 +16,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: _showForm ? _buildForm() : _buildWelcomeMessage(),
+      body: Stack(
+        children: [
+          // Background image
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/bg.png'), // Adjust the path to your image
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
+          // Content
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: _showForm ? _buildForm() : _buildWelcomeMessage(),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: _showForm
           ? null
@@ -160,154 +175,165 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildForm() {
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Your Complaint',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          DropdownButtonFormField<String>(
-            decoration: InputDecoration(
-              labelText: 'Type of Community Problem',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/background.jpg'), // Path to your background image
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Adjust sigmaX and sigmaY for blur intensity
+        child: Form(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Your Complaint',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            ),
-            items: [
-              DropdownMenuItem(
-                value: 'option1',
-                child: Text('Option 1'),
-              ),
-              DropdownMenuItem(
-                value: 'option2',
-                child: Text('Option 2'),
-              ),
-              DropdownMenuItem(
-                value: 'option3',
-                child: Text('Option 3'),
-              ),
-            ],
-            onChanged: (value) {},
-          ),
-          SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: TextButton(
-              onPressed: () {
-                // Placeholder for uploading photo or video from local storage
-              },
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
+              SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Type of Community Problem',
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.camera_alt_outlined, size: 50),
-                  SizedBox(width: 10),
-                  Text(
-                    'Upload Photo or Video',
-                    style: TextStyle(fontSize: 18),
+                items: [
+                  DropdownMenuItem(
+                    value: 'option1',
+                    child: Text('Option 1'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'option2',
+                    child: Text('Option 2'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'option3',
+                    child: Text('Option 3'),
                   ),
                 ],
+                onChanged: (value) {},
               ),
-            ),
-          ),
-          SizedBox(height: 20),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Write Your Problem',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            maxLines: 3,
-          ),
-          SizedBox(height: 20),
-          DropdownButtonFormField<String>(
-            decoration: InputDecoration(
-              labelText: 'Purok Location (Optional)',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            items: [
-              DropdownMenuItem(
-                value: 'purok1',
-                child: Text('Purok 1'),
-              ),
-              DropdownMenuItem(
-                value: 'purok2',
-                child: Text('Purok 2'),
-              ),
-              DropdownMenuItem(
-                value: 'purok3',
-                child: Text('Purok 3'),
-              ),
-            ],
-            onChanged: (value) {},
-          ),
-          SizedBox(height: 20),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Landmark or Sign of the Area',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Placeholder for tapping to record mic sound
-            },
-            child: CircleAvatar(
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.mic),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(20),
-            ),
-          ),
-          SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                _handleSubmit();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: Text(
-                  'Submit',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {
+                    // Placeholder for uploading photo or video from local storage
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.camera_alt_outlined, size: 50),
+                      SizedBox(width: 10),
+                      Text(
+                        'Upload Photo or Video',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Write Your Problem',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                maxLines: 3,
+              ),
+              SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Purok Location (Optional)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                items: [
+                  DropdownMenuItem(
+                    value: 'purok1',
+                    child: Text('Purok 1'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'purok2',
+                    child: Text('Purok 2'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'purok3',
+                    child: Text('Purok 3'),
+                  ),
+                ],
+                onChanged: (value) {},
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Landmark or Sign of the Area',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Placeholder for tapping to record mic sound
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Icon(Icons.mic),
+                ),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(20),
+                ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _handleSubmit();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -324,7 +350,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
 
   void _showDialog(String title, String content) {
     showDialog(

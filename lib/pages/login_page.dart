@@ -11,7 +11,6 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -20,14 +19,13 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          // Logo at the top
           Positioned(
-            top: 20,
+            top: MediaQuery.of(context).size.height * 0.05,
             left: 0,
             right: 0,
             child: Center(
               child: FractionallySizedBox(
-                widthFactor: 0.5, // Adjust the width factor as needed
+                widthFactor: 0.5,
                 child: Image.asset(
                   'assets/images/civicvoxlogo.png',
                   fit: BoxFit.contain,
@@ -35,41 +33,34 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          // Content
           Positioned.fill(
             bottom: 0,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.7, // Set the height of the container
+                  height: MediaQuery.of(context).size.height * 0.7,
                   decoration: BoxDecoration(
-                    color: Color(0xFFD3DFF6), // Background color of forms
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)), // Rounded top corners
+                    color: Color(0xFFD3DFF6),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(25),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 10), // Adjust the spacing between text and icon
-                          ],
-                        ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         AuthForm(
                           labelText: 'Email',
                           obscureText: false,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         AuthForm(
                           labelText: 'Password',
                           obscureText: true,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         AuthButton(
                           text: 'Log In',
                           onPressed: () {
@@ -105,7 +96,7 @@ class LoginPage extends StatelessWidget {
                             }
                           },
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TextButton(
                           onPressed: () {
                             // Add Forgot Password logic here
@@ -115,7 +106,7 @@ class LoginPage extends StatelessWidget {
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
-                        SizedBox(height: 50),
+                        const SizedBox(height: 50),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -123,17 +114,17 @@ class LoginPage extends StatelessWidget {
                               'Don\'t have an account yet? ',
                               style: TextStyle(color: Colors.black),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             ElevatedButton(
                               onPressed: () {
                                 // Navigate to login page
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => UserSignUpPage(),
-                                ));
+                                  MaterialPageRoute(builder: (context) => UserSignUpPage()),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor:  Colors.black,
+                                backgroundColor: Colors.black,
                                 minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
@@ -173,7 +164,7 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF000AFF), // Button background color
+        backgroundColor: Color(0xFF000AFF),
         minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -187,5 +178,3 @@ class AuthButton extends StatelessWidget {
     );
   }
 }
-
-

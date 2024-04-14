@@ -9,7 +9,7 @@ class AuthForm extends StatelessWidget {
   final double inputTextSize;
   final double borderRadius;
   final String? defaultValue;
-  final bool readOnly; // New parameter for making the text field non-editable
+  final bool readOnly;
 
   const AuthForm({
     Key? key,
@@ -21,7 +21,7 @@ class AuthForm extends StatelessWidget {
     this.inputTextSize = 18.0,
     this.borderRadius = 10.0,
     this.defaultValue,
-    this.readOnly = false, // Default to editable text field
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -44,7 +44,7 @@ class AuthForm extends StatelessWidget {
           height: fieldHeight,
           child: TextField(
             controller: controller,
-            readOnly: readOnly, // Set the readOnly property based on the parameter
+            readOnly: readOnly,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
