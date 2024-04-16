@@ -1,6 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:app/pages/rating_page.dart';
+
+import '../widgets/bottom_bar.dart';
+import '../widgets/glass_title.dart';
 
 class CommunityView extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _CommunityViewState extends State<CommunityView> {
           left: 16,
           right: 16,
           top: 10,
-          child: _buildGlassTitle('COMMUNITY'),
+          child: GlassTitle(title: 'COMMUNITY'), // Use the GlassTitle widget
         ),
         // Content
         SingleChildScrollView(
@@ -60,93 +61,16 @@ class _CommunityViewState extends State<CommunityView> {
           left: 16,
           right: 16,
           bottom: 16, // Adjust bottom position as needed
-          child: _buildBottomNavigationBar(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBottomNavigationBar() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20), // Clip rounded corners
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.3), // Glass effect color
-          borderRadius: BorderRadius.circular(20), // Rounded corners
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ], // Add boxShadow for glass effect
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: [
-            _buildNavigationBarItem(Icons.home, 'Home', true),
-            _buildNavigationBarItem(Icons.checklist_rounded, 'Complaints', true),
-            _buildNavigationBarItem(Icons.notifications, 'Notifications', true),
-            _buildNavigationBarItem(Icons.person, 'Profile', true),
-          ],
-        ),
-      ),
-    );
-  }
-
-  BottomNavigationBarItem _buildNavigationBarItem(
-      IconData icon, String label, bool outlined) {
-    return BottomNavigationBarItem(
-      icon: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: outlined ? null : Colors.white.withOpacity(0.5), // Glass effect color if not outlined
-          borderRadius: BorderRadius.circular(20),
-          border: outlined
-              ? Border.all(color: Colors.black, width: 1) // Add border if outlined
-              : null,
-          boxShadow: outlined
-              ? [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ]
-              : null, // Add boxShadow for glass effect if not outlined
-        ),
-        child: Icon(icon, color: outlined ? Colors.black : null),
-      ),
-      label: label,
-    );
-  }
-
-
-  Widget _buildGlassTitle(String title) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 0),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.3), // Glass effect color
-        borderRadius: BorderRadius.circular(20), // Rounded corners
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+          child: BottomBar(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
           ),
         ),
-      ),
+      ],
     );
   }
 }
