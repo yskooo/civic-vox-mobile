@@ -1,3 +1,4 @@
+import 'package:app/screens/community_view.dart';
 import 'package:flutter/material.dart';
 import 'auth_form.dart';
 import 'home_page.dart';
@@ -119,7 +120,7 @@ class _AddressSignUpPageState extends State<AddressSignUpPage> {
                                 Navigator.pushReplacement(
                                   // Navigate to home page
                                   context,
-                                  MaterialPageRoute(builder: (context) => HomePage()),
+                                  MaterialPageRoute(builder: (context) => CommunityView()),
                                 );
                               } else {
                                 // Show error message for invalid credentials

@@ -13,100 +13,115 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // Background image
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/bg.png'), // Adjust the path to your image
-                fit: BoxFit.cover,
-              ),
+    return Stack(
+      children: [
+        // Background image
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg.png'), // Adjust the path to your image
+              fit: BoxFit.cover,
             ),
           ),
-          // Glassmorphic title
-          Positioned(
-            left: 16,
-            right: 16,
-            top: 50,
-            child: _buildGlassTitle('COMMUNITY'),
-          ),
-          // Content
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center(
-                child: _showForm ? _buildForm() : SizedBox(), // Return SizedBox if you don't want to display anything
-              ),
+        ),
+        // Glassmorphic title
+        Positioned(
+          left: 16,
+          right: 16,
+          top: -30,
+          child: _buildGlassTitle('COMMUNITY'),
+        ),
+        // Content
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: _showForm ? _buildForm() : SizedBox(), // Return SizedBox if you don't want to display anything
             ),
           ),
-        ],
-      ),
-      floatingActionButton: _showForm
-          ? null
-          : FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _showForm = true;
-          });
-        },
-        child: Icon(Icons.add),
-      ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
+        ),
+        // Floating action button
+        Positioned(
+          bottom: _showForm ? 0 : 16, // Adjust bottom position based on whether the form is shown
+          right: 16,
+          child: _showForm
+              ? SizedBox() // Return SizedBox if form is shown
+              : FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                _showForm = true;
+              });
+            },
+            child: Icon(Icons.add),
+          ),
+        ),
+        // Bottom navigation bar
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: -80,
+          child: _buildBottomNavigationBar(),
+        ),
+      ],
     );
   }
 
-  Widget _buildGlassTitle(String title) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 40, horizontal: 0),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.3), // Glass effect color
-        borderRadius: BorderRadius.circular(20), // Rounded corners
-      ),
-      child: Center( // Center the text
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-      ),
-    );
-  }
+
+
 
   Container _buildBottomNavigationBar() {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.3), // Glass effect color
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ), // Rounded corners for top side only
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 3),
-          ),
-        ], // Add boxShadow for glass effect
+        borderRadius: BorderRadius.circular(20), // Rounded corners
       ),
-      child: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          _buildNavigationBarItem(Icons.home, 'Home'),
-          _buildNavigationBarItem(Icons.group, 'Complaints'),
-          _buildNavigationBarItem(Icons.notifications, 'Notifications'),
-          _buildNavigationBarItem(Icons.person, 'Profile'),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20), // Clip rounded corners
+        child: Stack(
+          children: [
+            // Background container to make the Stack fill the space
+            Positioned.fill(
+              child: Container(
+                color: Colors.transparent, // Make container transparent
+              ),
+            ),
+            // Bottom navigation bar container
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 20, // Adjust bottom position as needed
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Adjust padding as needed
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.8), // Adjust opacity for glass effect
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ], // Add boxShadow for glass effect
+                ),
+                child: BottomNavigationBar(
+                  currentIndex: _currentIndex,
+                  onTap: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                  items: [
+                    _buildNavigationBarItem(Icons.home, 'Home'),
+                    _buildNavigationBarItem(Icons.group, 'Complaints'),
+                    _buildNavigationBarItem(Icons.notifications, 'Notifications'),
+                    _buildNavigationBarItem(Icons.person, 'Profile'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -137,7 +152,25 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
+  Widget _buildGlassTitle(String title) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 40, horizontal: 0),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.3), // Glass effect color
+        borderRadius: BorderRadius.circular(20), // Rounded corners
+      ),
+      child: Center( // Center the text
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _buildForm() {
     return Container(
