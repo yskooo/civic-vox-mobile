@@ -54,7 +54,6 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                   alignment: Alignment.center,
                   child: CivicForm(
                     onSubmit: () {
-                      // Handle form submission
                       setState(() {
                         _showForm = false;
                       });

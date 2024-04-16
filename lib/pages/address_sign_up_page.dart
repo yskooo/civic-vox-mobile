@@ -1,7 +1,6 @@
 import 'package:app/screens/community_view.dart';
 import 'package:flutter/material.dart';
 import 'auth_form.dart';
-import 'home_page.dart';
 import 'login_page.dart';
 import 'personal_sign_up_page.dart';
 
