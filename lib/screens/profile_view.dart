@@ -10,7 +10,6 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   int _currentIndex = 3;
-  bool _showForm = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,7 @@ class _ProfileViewState extends State<ProfileView> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/bg.png'),
-              // Adjust the path to your image
+              image: AssetImage('assets/images/bg.png'), // Adjust path to your image
               fit: BoxFit.cover,
             ),
           ),
@@ -38,22 +36,13 @@ class _ProfileViewState extends State<ProfileView> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             // Your content widgets go here
-          ),
-        ),
-        // Floating action button
-        Positioned(
-          bottom: _showForm ? 0 : 16,
-          // Adjust bottom position based on whether the form is shown
-          right: 16,
-          child: _showForm
-              ? SizedBox() // Return SizedBox if form is shown
-              : FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _showForm = true;
-              });
-            },
-            child: Icon(Icons.add),
+            child: Column(
+              children: [
+                // Add your profile content widgets here
+                // For example:
+                Text('Profile'),
+              ],
+            ),
           ),
         ),
         // Bottom navigation bar

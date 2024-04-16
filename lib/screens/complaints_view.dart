@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/bottom_bar.dart';
 import '../widgets/glass_title.dart';
 
 class ComplaintsView extends StatefulWidget {
-  const ComplaintsView({super.key});
-
   @override
   _ComplaintsViewState createState() => _ComplaintsViewState();
 }

@@ -10,7 +10,6 @@ class NotificationsView extends StatefulWidget {
 
 class _NotificationsViewState extends State<NotificationsView> {
   int _currentIndex = 2;
-  bool _showForm = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,7 @@ class _NotificationsViewState extends State<NotificationsView> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/bg.png'),
-              // Adjust the path to your image
+              image: AssetImage('assets/images/bg.png'), // Adjust path to your image
               fit: BoxFit.cover,
             ),
           ),
@@ -31,36 +29,27 @@ class _NotificationsViewState extends State<NotificationsView> {
           left: 16,
           right: 16,
           top: 10,
-          child: GlassTitle(title: 'NOTIFICATIONS'), // Use the GlassTitle widget
+          child: GlassTitle(title: 'PROFILE'), // Use the GlassTitle widget
         ),
         // Content
         SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             // Your content widgets go here
-          ),
-        ),
-        // Floating action button
-        Positioned(
-          bottom: _showForm ? 0 : 16,
-          // Adjust bottom position based on whether the form is shown
-          right: 16,
-          child: _showForm
-              ? SizedBox() // Return SizedBox if form is shown
-              : FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _showForm = true;
-              });
-            },
-            child: Icon(Icons.add),
+            child: Column(
+              children: [
+                // Add your profile content widgets here
+                // For example:
+                Text('Notifications'),
+              ],
+            ),
           ),
         ),
         // Bottom navigation bar
         Positioned(
-          left: 16,
-          right: 16,
-          bottom: 16, // Adjust bottom position as needed
+          left: 0,
+          right: 0,
+          bottom: 0, // Align to the bottom of the screen
           child: BottomBar(
             currentIndex: _currentIndex,
             onTap: (index) {

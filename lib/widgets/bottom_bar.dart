@@ -19,7 +19,27 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       widget.onTap(index);
     });
+
+    switch (index) {
+      case 0:
+      // Navigate to Home screen
+        Navigator.pushNamed(context, '/community');
+        break;
+      case 1:
+      // Navigate to Complaints screen
+        Navigator.pushNamed(context, '/complaints');
+        break;
+      case 2:
+      // Navigate to Notifications screen
+        Navigator.pushNamed(context, '/notifications');
+        break;
+      case 3:
+      // Navigate to Profile screen
+        Navigator.pushNamed(context, '/profile');
+        break;
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
