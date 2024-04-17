@@ -47,17 +47,27 @@ class CompliancePostCard extends StatelessWidget {
                       name,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(time),
+                    Row(
+                      children: [
+                        Text(time),
+                        SizedBox(width: 8), // Add space between time and detail
+                        Text(
+                          "|",
+                          style: TextStyle(fontSize: 16), // Adjust fontSize as needed
+                        ),
+                        SizedBox(width: 8), // Add space between "|" and detail
+                        Text(
+                          detail,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 8),
-            Text(
-              detail,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
+            // SizedBox(height: 8),
             Text(description),
             SizedBox(height: 8),
             if (mediaUrls.isNotEmpty)
