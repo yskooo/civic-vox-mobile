@@ -56,11 +56,11 @@ class _ProfileViewState extends State<ProfileView> {
                             SizedBox(height: 10),
                             Text(
                               'Kween Yasmin',
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                             Text(
                               'email@gmail.com',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 16, color: Colors.white),
                             ),
                             SizedBox(height: 10),
                             ElevatedButton(
@@ -76,7 +76,7 @@ class _ProfileViewState extends State<ProfileView> {
                       // General text
                       Text(
                         'General',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       SizedBox(height: 10),
                       Card(
@@ -110,7 +110,7 @@ class _ProfileViewState extends State<ProfileView> {
                       // Help & Legal text
                       Text(
                         'Help & Legal',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       SizedBox(height: 10),
                       Card(
