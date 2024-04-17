@@ -49,6 +49,7 @@ class _CommunityViewState extends State<CommunityView> {
                 time: '2 hours ago',
                 detail: 'Compliance Details',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                mediaUrls: ['https://cdn.autokid.com.ph/wp-content/uploads/2021/06/Truck-Trailers-and-Their-Uses-1080x675.jpg'], // Provide media URLs here
                 likes: 10,
                 comments: 5,
               ),
