@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/glass_title.dart';
+import '../widgets/post.dart'; // Import the CompliancePostCard widget
 
 class CommunityView extends StatefulWidget {
   @override
@@ -33,10 +34,26 @@ class _CommunityViewState extends State<CommunityView> {
           child: GlassTitle(title: 'COMMUNITY'), // Use the GlassTitle widget
         ),
         // Content
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            // Your content widgets go here
+        Positioned(
+          top: 70, // Adjust top position based on the title height
+          bottom: _showForm ? 0 : 16,
+          // Adjust bottom position based on whether the form is shown
+          left: 0,
+          right: 0,
+          child: ListView(
+            padding: EdgeInsets.all(16.0),
+            children: [
+              CompliancePostCard(
+                profileImage: 'profile_image_url',
+                name: 'John Doe',
+                time: '2 hours ago',
+                detail: 'Compliance Details',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                likes: 10,
+                comments: 5,
+              ),
+              // Add more CompliancePostCard widgets as needed
+            ],
           ),
         ),
         // Floating action button
