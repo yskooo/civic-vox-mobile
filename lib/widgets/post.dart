@@ -58,7 +58,7 @@ class CompliancePostCard extends StatelessWidget {
                         SizedBox(width: 8), // Add space between "|" and detail
                         Text(
                           detail,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                         ),
                       ],
                     ),
