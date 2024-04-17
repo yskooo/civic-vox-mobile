@@ -23,6 +23,7 @@ class CompliancePostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white.withOpacity(0.3), // Glass effect color
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
