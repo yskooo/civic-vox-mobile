@@ -39,23 +39,26 @@ class _BottomBarState extends State<BottomBar> {
         break;
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: BottomNavigationBar(
-        currentIndex: widget.currentIndex,
-        onTap: _onItemTapped,
-        items: [
-          _buildNavigationBarItem(Icons.home, 'Home'),
-          _buildNavigationBarItem(Icons.checklist_rounded, 'Complaints'),
-          _buildNavigationBarItem(Icons.notifications, 'Notifications'),
-          _buildNavigationBarItem(Icons.person, 'Profile'),
-        ],
+      child: Container(
+        child: BottomNavigationBar(
+          backgroundColor: Colors.black, // Set background color
+          currentIndex: widget.currentIndex,
+          onTap: _onItemTapped,
+          items: [
+            _buildNavigationBarItem(Icons.home, 'Community'),
+            _buildNavigationBarItem(Icons.checklist_rounded, 'Complaints'),
+            _buildNavigationBarItem(Icons.notifications, 'Notifications'),
+            _buildNavigationBarItem(Icons.person, 'Profile'),
+          ],
+        ),
       ),
     );
   }
+
 
   BottomNavigationBarItem _buildNavigationBarItem(IconData icon, String label) {
     return BottomNavigationBarItem(
@@ -65,9 +68,9 @@ class _BottomBarState extends State<BottomBar> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 5,
+              color: Colors.black.withOpacity(0.20),
+              spreadRadius: 1,
+              blurRadius: 1,
               offset: Offset(0, 3),
             ),
           ],

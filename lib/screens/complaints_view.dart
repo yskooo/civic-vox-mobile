@@ -102,14 +102,14 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                                 width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black), // Add black border
-                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                  borderRadius: BorderRadius.circular(10), // Add border radius
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle withdraw button press
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Rounded shape
                                   ),
                                   child: Text('Withdraw'),
                                 ),
@@ -119,14 +119,14 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                                 width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black), // Add black border
-                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                  borderRadius: BorderRadius.circular(10), // Add border radius
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle track button press
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Rounded shape
                                   ),
                                   child: Text('Track'),
                                 ),
@@ -215,14 +215,14 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                                 width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black), // Add black border
-                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                  borderRadius: BorderRadius.circular(10), // Add border radius
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle withdraw button press
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Rounded shape
                                   ),
                                   child: Text('Withdraw'),
                                 ),
@@ -232,14 +232,14 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                                 width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black), // Add black border
-                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                  borderRadius: BorderRadius.circular(10), // Add border radius
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle track button press
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Rounded shape
                                   ),
                                   child: Text('Track'),
                                 ),
@@ -296,9 +296,9 @@ class _ComplaintsViewState extends State<ComplaintsView> {
           ),
           // Bottom navigation bar
           Positioned(
-            left: 16,
-            right: 16,
-            bottom: 16,
+            left: 20,
+            right: 20,
+            bottom: 20, // Adjust bottom position as needed
             child: BottomBar(
               currentIndex: _currentIndex,
               onTap: (index) {

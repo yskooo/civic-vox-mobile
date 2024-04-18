@@ -59,25 +59,27 @@ class _CommunityViewState extends State<CommunityView> {
         ),
         // Floating action button
         Positioned(
-          bottom: _showForm ? 0 : 16,
-          // Adjust bottom position based on whether the form is shown
-          right: 16,
-          child: _showForm
-              ? SizedBox() // Return SizedBox if form is shown
-              : FloatingActionButton(
+          bottom: MediaQuery.of(context).size.height * 0.15, // Adjust position based on screen height
+          right: 20,
+          child: FloatingActionButton(
             onPressed: () {
               setState(() {
-                _showForm = true;
+                _showForm = true; // Set _showForm to true when button is clicked
               });
             },
-            child: Icon(Icons.add),
+            backgroundColor: Colors.blue, // Set background color to blue
+            child: Icon(Icons.edit, color: Colors.white), // Set icon color to white
+            shape: CircleBorder(), // Set shape to circular
+            heroTag: null, // Set hero tag to null to prevent duplicate hero tag errors
+            elevation: 5, // Add elevation for a shadow effect
+            mini: false, // Make the button normal size
           ),
         ),
         // Bottom navigation bar
         Positioned(
-          left: 16,
-          right: 16,
-          bottom: 16, // Adjust bottom position as needed
+          left: 20,
+          right: 20,
+          bottom: 20, // Adjust bottom position as needed
           child: BottomBar(
             currentIndex: _currentIndex,
             onTap: (index) {

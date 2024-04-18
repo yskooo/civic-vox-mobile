@@ -145,9 +145,9 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             // Bottom navigation bar
             Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0, // Align to the bottom of the screen
+              left: 20,
+              right: 20,
+              bottom: 20, // Adjust bottom position as needed
               child: BottomBar(
                 currentIndex: _currentIndex,
                 onTap: (index) {
