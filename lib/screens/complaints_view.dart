@@ -27,17 +27,226 @@ class _ComplaintsViewState extends State<ComplaintsView> {
             ),
           ),
           // Glassmorphic title
-          const Positioned(
+          Positioned(
             left: 16,
             right: 16,
             top: 10,
-            child: GlassTitle(title: 'COMPLAINTS'),
+            child: GlassTitle(title: 'MY COMPLAINTS'),
           ),
           // Content
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              // Your content widgets go here
+              padding: const EdgeInsets.fromLTRB(40.0, 100.0, 40.0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // "In Progress" Card
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.circle_rounded, color: Colors.blue), // Icon in blue color
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'In Progress',
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue), // Text in blue color
+                                    ),
+                                    Text('Ticket #10'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              // Picture on left
+                              Container(
+                                width: 100,
+                                height: 100,
+                                color: Colors.grey, // Placeholder color
+                                // Your picture widget here
+                              ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Road (Broken Road) at Purok #2',
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      'We need help to fix this road right now, it causes traffic. We’re gonna be late. charot',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black), // Add black border
+                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle withdraw button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                  ),
+                                  child: Text('Withdraw'),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black), // Add black border
+                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle track button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                  ),
+                                  child: Text('Track'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  // "Resolved" Card
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.check_circle, color: Colors.green), // Icon in green color
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Resolved',
+                                      style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold), // Text in green color and bold
+                                    ),
+                                    Text('Ticket No . #5'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              // Picture on left
+                              Container(
+                                width: 100,
+                                height: 100,
+                                color: Colors.grey, // Placeholder color
+                                // Your picture widget here
+                              ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'On Thu, 25 March',
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      'Tree (Fallen Tree) at Purok #2\n3 trees fell down because a car bang against it earlier and now it causes traffic.\n',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Icon(Icons.check_circle, color: Colors.green), // Icon in green color
+                              SizedBox(width: 8),
+                              Text(
+                                'Your complaint was successfully resolved by the barangay tanod.',
+                                style: TextStyle(color: Colors.green), // Text in green color
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black), // Add black border
+                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle withdraw button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                  ),
+                                  child: Text('Withdraw'),
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black), // Add black border
+                                  borderRadius: BorderRadius.circular(30), // Add border radius
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle track button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)), // Rounded shape
+                                  ),
+                                  child: Text('Track'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           // Civic form
@@ -80,7 +289,6 @@ class _ComplaintsViewState extends State<ComplaintsView> {
               mini: false, // Make the button normal size
             ),
           ),
-
           // Bottom navigation bar
           Positioned(
             left: 16,
