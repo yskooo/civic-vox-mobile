@@ -36,7 +36,7 @@ class _ComplaintsViewState extends State<ComplaintsView> {
           // Content
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(40.0, 100.0, 40.0, 0),
+              padding: const EdgeInsets.fromLTRB(10.0, 100.0, 10.0, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -192,15 +192,20 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                             ],
                           ),
                           SizedBox(height: 16),
-                          Row(
-                            children: [
-                              Icon(Icons.check_circle, color: Colors.green), // Icon in green color
-                              SizedBox(width: 8),
-                              Text(
-                                'Your complaint was successfully resolved by the barangay tanod.',
-                                style: TextStyle(color: Colors.green), // Text in green color
-                              ),
-                            ],
+                          Container(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(Icons.check_circle, color: Colors.green),
+                                SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    'Your complaint was successfully resolved by the barangay tanod.',
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(height: 16),
                           Row(
