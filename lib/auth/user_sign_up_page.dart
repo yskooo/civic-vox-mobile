@@ -18,14 +18,14 @@ class UserSignUpPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/bg.png'),
+                image: AssetImage('assets/images/bg-auth.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           // Logo at the top
           Positioned(
-            top: screenHeight * 0.05,
+            top: screenHeight * 0.04,
             left: 0,
             right: 0,
             child: Center(
@@ -44,7 +44,7 @@ class UserSignUpPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
                 child: Container(
                   height: screenHeight * 0.7,
                   decoration: BoxDecoration(

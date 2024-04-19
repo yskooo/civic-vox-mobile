@@ -44,10 +44,10 @@ class _BottomBarState extends State<BottomBar> {
     return Container(
       width: screenWidth,
       child: GlassContainer(
-        height: 60,
+        height: 70,
         borderRadius: BorderRadius.circular(20),
         blur: 10,
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
+        border: Border.all(color: Colors.black.withOpacity(0.7), width: 1.7),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -63,8 +63,8 @@ class _BottomBarState extends State<BottomBar> {
 
   Widget _buildBarItem(IconData icon, String label, int index, double iconSize, TextStyle labelStyle) {
     final isSelected = index == widget.currentIndex;
-    final color = isSelected ? Colors.white : Colors.grey;
-    final backgroundColor = isSelected ? Colors.black.withOpacity(0.9) : Colors.transparent;
+    final color = isSelected ? Colors.black : Colors.black;
+    final backgroundColor = isSelected ? Colors.white.withOpacity(0.9) : Colors.transparent;
 
     return Expanded(
       child: InkWell(
@@ -73,7 +73,7 @@ class _BottomBarState extends State<BottomBar> {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: backgroundColor,
           ),
           child: Column(

@@ -60,11 +60,11 @@ class _ProfileViewState extends State<ProfileView> {
                               SizedBox(height: 10),
                               Text(
                                 'Kween Yasmin',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                               ),
                               Text(
                                 'email@gmail.com',
-                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                style: TextStyle(fontSize: 16, color: Colors.black),
                               ),
                               SizedBox(height: 10),
                               ElevatedButton(
@@ -81,7 +81,7 @@ class _ProfileViewState extends State<ProfileView> {
                       // General text
                       Text(
                         'General',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                       SizedBox(height: 10),
                       // Card wrapped with GlassContainer
@@ -96,24 +96,12 @@ class _ProfileViewState extends State<ProfileView> {
                                 leading: Icon(Icons.lock),
                                 title: Text('Change Password',
                                   style: TextStyle(
-                                    color: Colors.white, // Set text color to white
+                                    color: Colors.black, // Set text color to white
                                   ),
                                 ),
                                 trailing: Icon(Icons.arrow_forward),
                                 onTap: () {
                                   // Handle change password action
-                                },
-                              ),
-                              Divider(), // Add a divider between list tiles
-                              SwitchListTile(
-                                title: Text('Dark Mode',
-                                  style: TextStyle(
-                                    color: Colors.white, // Set text color to white
-                                  ),
-                                ),
-                                value: true, // Replace with actual dark mode status
-                                onChanged: (bool value) {
-                                  // Toggle dark mode
                                 },
                               ),
                             ],
@@ -124,7 +112,7 @@ class _ProfileViewState extends State<ProfileView> {
                       // Help & Legal text
                       Text(
                         'Help & Legal',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                       SizedBox(height: 10),
                       // Card wrapped with GlassContainer
@@ -140,7 +128,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 title: Text(
                                   'Help',
                                   style: TextStyle(
-                                    color: Colors.white, // Set text color to white
+                                    color: Colors.black, // Set text color to white
                                   ),
                                 ),
                                 onTap: () {
@@ -152,7 +140,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 leading: Icon(Icons.logout),
                                 title: Text('Logout',
                                   style: TextStyle(
-                                    color: Colors.white, // Set text color to white
+                                    color: Colors.black, // Set text color to white
                                   ),
                                 ),
                                 onTap: () {

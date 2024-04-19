@@ -1,5 +1,5 @@
 import 'package:app/pages/get_started.dart';
-import 'package:app/pages/login_page.dart';
+import 'package:app/auth/login_page.dart';
 import 'package:app/screens/community_view.dart';
 import 'package:app/screens/complaints_view.dart';
 import 'package:app/screens/notifications_view.dart';

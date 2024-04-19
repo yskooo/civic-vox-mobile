@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import '../auth/login_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class GetStartedPage extends StatelessWidget {
       body: Stack(
         children: [
           const Image(
-            image: AssetImage('assets/images/bg.png'),
+            image: AssetImage('assets/images/bg-auth.png'),
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,

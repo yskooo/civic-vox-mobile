@@ -14,13 +14,13 @@ class LoginPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/bg.png'),
+                image: AssetImage('assets/images/bg-auth.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.05,
+            top: MediaQuery.of(context).size.height * 0.04,
             left: 0,
             right: 0,
             child: Center(
@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
+                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.7,
                   decoration: BoxDecoration(
