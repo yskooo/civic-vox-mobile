@@ -10,6 +10,11 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   int _currentIndex = 3;
+  bool _isEditingProfile = false; // Track if profile is being edited
+
+  String _username = 'Kween Yasmin'; // Initial username
+  String _email = 'email@gmail.com'; // Initial email
+  String _phoneNumber = '123-456-7890'; // Initial phone number
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +72,76 @@ class _ProfileViewState extends State<ProfileView> {
                                 style: TextStyle(fontSize: 16, color: Colors.black),
                               ),
                               SizedBox(height: 10),
+                              // "Edit Profile" button
                               ElevatedButton(
                                 onPressed: () {
-                                  // Navigate to edit profile screen
+                                  setState(() {
+                                    _isEditingProfile = true; // Set editing mode to true
+                                  });
                                 },
                                 child: Text('Edit Profile'),
                               ),
+                              SizedBox(height: 20),
+                              // Show forms when editing profile
+                              if (_isEditingProfile)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    // Form fields for username, email, and phone number
+                                    TextFormField(
+                                      initialValue: _username,
+                                      onChanged: (value) {
+                                        _username = value;
+                                      },
+                                      decoration: InputDecoration(
+                                        labelText: 'Username',
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ), // Outline border
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    TextFormField(
+                                      initialValue: _email,
+                                      onChanged: (value) {
+                                        _email = value;
+                                      },
+                                      decoration: InputDecoration(
+                                        labelText: 'Email',
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ), // Outline border
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    TextFormField(
+                                      initialValue: _phoneNumber,
+                                      onChanged: (value) {
+                                        _phoneNumber = value;
+                                      },
+                                      decoration: InputDecoration(
+                                        labelText: 'Phone Number',
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ), // Outline border
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // Save changes to profile
+                                        setState(() {
+                                          _isEditingProfile = false; // Set editing mode to false
+                                        });
+                                        // Handle saving changes to profile
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(vertical: 12.0), // Adjust padding for button height
+                                      ),
+                                      child: Text('Save Changes'),
+                                    ),
+                                  ],
+                                ),
                             ],
                           ),
                         ),
@@ -93,13 +162,13 @@ class _ProfileViewState extends State<ProfileView> {
                           child: Column(
                             children: [
                               ListTile(
-                                leading: Icon(Icons.lock),
+                                leading: Icon(Icons.lock, color: Colors.white),
                                 title: Text('Change Password',
                                   style: TextStyle(
                                     color: Colors.black, // Set text color to white
                                   ),
                                 ),
-                                trailing: Icon(Icons.arrow_forward),
+                                trailing: Icon(Icons.arrow_forward, color: Colors.white),
                                 onTap: () {
                                   // Handle change password action
                                 },
@@ -124,7 +193,7 @@ class _ProfileViewState extends State<ProfileView> {
                           child: Column(
                             children: [
                               ListTile(
-                                leading: Icon(Icons.help),
+                                leading: Icon(Icons.help, color: Colors.white),
                                 title: Text(
                                   'Help',
                                   style: TextStyle(
@@ -137,10 +206,10 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                               SizedBox(height: 10), // Add some space between list tiles
                               ListTile(
-                                leading: Icon(Icons.logout),
+                                leading: Icon(Icons.logout, color: Colors.white),
                                 title: Text('Logout',
                                   style: TextStyle(
-                                    color: Colors.black, // Set text color to white
+                                    color: Colors.red, // Set text color to white
                                   ),
                                 ),
                                 onTap: () {

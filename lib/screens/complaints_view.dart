@@ -75,7 +75,7 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                               Container(
                                 width: 100,
                                 height: 100,
-                                color: Colors.grey, // Placeholder color
+                                color: Colors.red, // Placeholder color
                                 // Your picture widget here
                               ),
                               SizedBox(width: 8),
