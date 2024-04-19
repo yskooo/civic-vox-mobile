@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
 class BottomBar extends StatefulWidget {
   final int currentIndex;
@@ -16,68 +17,75 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   void _onItemTapped(int index) {
-    setState(() {
-      widget.onTap(index);
-    });
+    widget.onTap(index);
 
     switch (index) {
       case 0:
-      // Navigate to Home screen
-        Navigator.pushNamed(context, '/community');
+        Navigator.pushReplacementNamed(context, '/community');
         break;
       case 1:
-      // Navigate to Complaints screen
-        Navigator.pushNamed(context, '/complaints');
+        Navigator.pushReplacementNamed(context, '/complaints');
         break;
       case 2:
-      // Navigate to Notifications screen
-        Navigator.pushNamed(context, '/notifications');
+        Navigator.pushReplacementNamed(context, '/notifications');
         break;
       case 3:
-      // Navigate to Profile screen
-        Navigator.pushNamed(context, '/profile');
+        Navigator.pushReplacementNamed(context, '/profile');
         break;
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        child: BottomNavigationBar(
-          backgroundColor: Colors.black, // Set background color
-          currentIndex: widget.currentIndex,
-          onTap: _onItemTapped,
-          items: [
-            _buildNavigationBarItem(Icons.home, 'Community'),
-            _buildNavigationBarItem(Icons.checklist_rounded, 'Complaints'),
-            _buildNavigationBarItem(Icons.notifications, 'Notifications'),
-            _buildNavigationBarItem(Icons.person, 'Profile'),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final iconSize = screenWidth * 0.04;
+    final labelStyle = TextStyle(fontSize: 8,);
+
+    return Container(
+      width: screenWidth,
+      child: GlassContainer(
+        height: 60,
+        borderRadius: BorderRadius.circular(20),
+        blur: 10,
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildBarItem(Icons.home, 'Community', 0, iconSize, labelStyle),
+            _buildBarItem(Icons.checklist_rounded, 'Complaints', 1, iconSize, labelStyle),
+            _buildBarItem(Icons.notifications, 'Notifications', 2, iconSize, labelStyle),
+            _buildBarItem(Icons.person, 'Profile', 3, iconSize, labelStyle),
           ],
         ),
       ),
     );
   }
 
+  Widget _buildBarItem(IconData icon, String label, int index, double iconSize, TextStyle labelStyle) {
+    final isSelected = index == widget.currentIndex;
+    final color = isSelected ? Colors.white : Colors.grey;
+    final backgroundColor = isSelected ? Colors.black.withOpacity(0.9) : Colors.transparent;
 
-  BottomNavigationBarItem _buildNavigationBarItem(IconData icon, String label) {
-    return BottomNavigationBarItem(
-      icon: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.20),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 3),
-            ),
-          ],
+    return Expanded(
+      child: InkWell(
+        onTap: () => _onItemTapped(index), // Call _onItemTapped with index when tapped
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: backgroundColor,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: iconSize, color: color),
+              SizedBox(height: 4),
+              Text(label, style: labelStyle.copyWith(color: color)),
+            ],
+          ),
         ),
-        child: Icon(icon),
       ),
-      label: label,
     );
   }
 }
