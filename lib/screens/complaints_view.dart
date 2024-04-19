@@ -26,12 +26,14 @@ class _ComplaintsViewState extends State<ComplaintsView> {
               ),
             ),
           ),
-          // Glassmorphic title
+          // Glassmorphic title serving as app bar
           Positioned(
-            left: 16,
-            right: 16,
-            top: 10,
-            child: GlassTitle(title: 'MY COMPLAINTS'),
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+              child: GlassTitle(title: 'MY COMPLAINTS'), // Use the GlassTitle widget
+            ),
           ),
           // Content
           SingleChildScrollView(

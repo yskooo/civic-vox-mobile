@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/glass_title.dart';
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -27,9 +28,8 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             // Glassmorphic title serving as app bar
             Positioned(
-              left: 16,
-              right: 16,
-              top: 10,
+              left: 0,
+              right: 0,
               child: Container(
                 padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                 child: GlassTitle(title: 'PROFILE'), // Use the GlassTitle widget
@@ -45,31 +45,36 @@ class _ProfileViewState extends State<ProfileView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Profile info
-                      Center(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundImage: NetworkImage('https://pbs.twimg.com/profile_images/1291639667079524352/yUTztc-a_400x400.jpg'), // Adjust path to your profile picture
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Kween Yasmin',
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                            ),
-                            Text(
-                              'email@gmail.com',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                            SizedBox(height: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Navigate to edit profile screen
-                              },
-                              child: Text('Edit Profile'),
-                            ),
-                          ],
+                      // Profile info wrapped with GlassContainer
+                      GlassContainer(
+                        borderRadius: BorderRadius.circular(15),
+                        blur: 10,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 50,
+                                backgroundImage: NetworkImage('https://pbs.twimg.com/profile_images/1291639667079524352/yUTztc-a_400x400.jpg'), // Adjust path to your profile picture
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Kween Yasmin',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                              ),
+                              Text(
+                                'email@gmail.com',
+                                style: TextStyle(fontSize: 16, color: Colors.white),
+                              ),
+                              SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Navigate to edit profile screen
+                                },
+                                child: Text('Edit Profile'),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -79,33 +84,42 @@ class _ProfileViewState extends State<ProfileView> {
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       SizedBox(height: 10),
-                      Card(
-                        color: Colors.white.withOpacity(0.3), // Glass effect color
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              leading: Icon(Icons.lock),
-                              title: Text('Change Password'),
-                              trailing: Icon(Icons.arrow_forward),
-                              onTap: () {
-                                // Handle change password action
-                              },
-                            ),
-                            Divider(), // Add a divider between list tiles
-                            SwitchListTile(
-                              title: Text('Dark Mode'),
-                              value: true, // Replace with actual dark mode status
-                              onChanged: (bool value) {
-                                // Toggle dark mode
-                              },
-                            ),
-                          ],
+                      // Card wrapped with GlassContainer
+                      GlassContainer(
+                        borderRadius: BorderRadius.circular(15),
+                        blur: 10,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.lock),
+                                title: Text('Change Password',
+                                  style: TextStyle(
+                                    color: Colors.white, // Set text color to white
+                                  ),
+                                ),
+                                trailing: Icon(Icons.arrow_forward),
+                                onTap: () {
+                                  // Handle change password action
+                                },
+                              ),
+                              Divider(), // Add a divider between list tiles
+                              SwitchListTile(
+                                title: Text('Dark Mode',
+                                  style: TextStyle(
+                                    color: Colors.white, // Set text color to white
+                                  ),
+                                ),
+                                value: true, // Replace with actual dark mode status
+                                onChanged: (bool value) {
+                                  // Toggle dark mode
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-
                       SizedBox(height: 20),
                       // Help & Legal text
                       Text(
@@ -113,29 +127,40 @@ class _ProfileViewState extends State<ProfileView> {
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       SizedBox(height: 10),
-                      Card(
-                        color: Colors.white.withOpacity(0.3), // Glass effect color
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              leading: Icon(Icons.help),
-                              title: Text('Help'),
-                              onTap: () {
-                                // Handle help action
-                              },
-                            ),
-                            SizedBox(height: 10), // Add some space between list tiles
-                            ListTile(
-                              leading: Icon(Icons.logout),
-                              title: Text('Logout'),
-                              onTap: () {
-                                // Handle logout action
-                              },
-                            ),
-                          ],
+                      // Card wrapped with GlassContainer
+                      GlassContainer(
+                        borderRadius: BorderRadius.circular(15),
+                        blur: 10,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.help),
+                                title: Text(
+                                  'Help',
+                                  style: TextStyle(
+                                    color: Colors.white, // Set text color to white
+                                  ),
+                                ),
+                                onTap: () {
+                                  // Handle help action
+                                },
+                              ),
+                              SizedBox(height: 10), // Add some space between list tiles
+                              ListTile(
+                                leading: Icon(Icons.logout),
+                                title: Text('Logout',
+                                  style: TextStyle(
+                                    color: Colors.white, // Set text color to white
+                                  ),
+                                ),
+                                onTap: () {
+                                  // Handle logout action
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

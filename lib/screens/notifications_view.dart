@@ -28,15 +28,13 @@ class _NotificationsViewState extends State<NotificationsView> {
               ),
             ),
           ),
-          // Glassmorphic title serving like an app bar
+          // Glassmorphic title serving as app bar
           Positioned(
             left: 0,
             right: 0,
-            top: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: GlassTitle(
-                  title: 'NOTIFICATIONS'), // Use the GlassTitle widget
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+              child: GlassTitle(title: 'NOTIFICATIONS'), // Use the GlassTitle widget
             ),
           ),
           // Content

@@ -28,12 +28,14 @@ class _CommunityViewState extends State<CommunityView> {
               ),
             ),
           ),
-          // Glassmorphic title
+          // Glassmorphic title serving as app bar
           Positioned(
-            left: 16,
-            right: 16,
-            top: 10,
-            child: GlassTitle(title: 'COMMUNITY'), // Use the GlassTitle widget
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+              child: GlassTitle(title: 'COMMUNITY'), // Use the GlassTitle widget
+            ),
           ),
           // Content
           Positioned(
