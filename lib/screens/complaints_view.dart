@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/civic_form.dart';
 import '../widgets/glass_title.dart';
+import '../widgets/tracking_card.dart';
 
 class ComplaintsView extends StatefulWidget {
   @override
@@ -126,6 +127,23 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle track button press
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text("Tracking Information"),
+                                          content: TrackingCard(), // Display the TrackingCard widget inside the AlertDialog
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop(); // Close the AlertDialog
+                                              },
+                                              child: Text("Close"),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Rounded shape
