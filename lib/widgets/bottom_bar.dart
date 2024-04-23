@@ -47,7 +47,7 @@ class _BottomBarState extends State<BottomBar> {
         height: 70,
         borderRadius: BorderRadius.circular(20),
         blur: 10,
-        border: Border.all(color: Colors.black.withOpacity(0.7), width: 1.7),
+        border: Border.all(color: Colors.white.withOpacity(0.7), width: 1.7),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
