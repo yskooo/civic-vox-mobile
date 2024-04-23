@@ -76,11 +76,13 @@ class _CivicFormState extends State<CivicForm> {
           // Content
           Positioned.fill(
             top: MediaQuery.of(context).padding.top + 60, // Adjust the top position to leave space for the GlassTitle
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Color(0xC9C9C9), // Container color
+            child: Container(
+              margin: EdgeInsets.all(10), // Add margin horizontally
+              child: Card(
+                child: Container(
+                  padding: EdgeInsets.all(20), // Add padding inside the card
+                  decoration: BoxDecoration(
+                  color: Color(0xCCCCCC), // Container color
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: SingleChildScrollView(
@@ -88,23 +90,46 @@ class _CivicFormState extends State<CivicForm> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          // setState(() {
-                          //   _showGrid = true;
-                          // });
-                        },
-                        child: Text(
-                          _selectedComplaintType ?? 'Type of Complaint',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFEFEFEF), // Dropdown color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                      Row(
+                        children: [
+                          Text(
+                            'Title:',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _showGrid = true;
+                                });
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    _selectedComplaintType ?? 'Select Type of Complaint',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  Icon(Icons.arrow_drop_down, color: Colors.black), // Add arrow down icon
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFFEFEFEF), // Set button color
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Set button border radius
+                                  side: BorderSide(color: Colors.black, width: 1), // Add border
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+
                       SizedBox(height: 20),
                       // Grid of 3x5 boxes (only shown when button is tapped)
                       if (_showGrid)
@@ -144,15 +169,15 @@ class _CivicFormState extends State<CivicForm> {
                             );
                           }).toList(),
                         ),
-                      SizedBox(height: 20),
-                      Divider(color: Colors.black), // Divider for visual separation
-                      SizedBox(height: 20),
+                      SizedBox(height: 5),
+                      Divider(color: Colors.black, thickness: 2), // Divider for visual separation
+                      SizedBox(height: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FormFieldWithTitle(
-                            title: 'Write Your Problem',
-                            description: 'Describe your complaint in detail',
+                            title: 'Add more details about your Complaint',
+                            description: 'Details you think is important for us to know',
                             child: TextFormField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -165,6 +190,22 @@ class _CivicFormState extends State<CivicForm> {
                             ),
                           ),
                           SizedBox(height: 20),
+                          FormFieldWithTitle(
+                            title: 'Add photos or videos',
+                            description: 'Photos and Videos help us to find best staff and tools for your needs as soon as possible.',
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFC9C9C9), // Text form field color
+                              ),
+                              maxLines: 3,
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Divider(color: Colors.black,thickness: 2, ), // Divider for visual separation
                           FormFieldWithTitle(
                             title: 'Purok Location (Optional)',
                             description: 'Select the location where the issue occurred',
@@ -252,8 +293,7 @@ class _CivicFormState extends State<CivicForm> {
                 ),
               ),
             ),
-          ),
-        ],
+          ),)],
       ),
     );
   }
