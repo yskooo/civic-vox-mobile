@@ -34,7 +34,9 @@ class _CommunityViewState extends State<CommunityView> {
             right: 0,
             child: Container(
               padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: GlassTitle(title: 'COMMUNITY'), // Use the GlassTitle widget
+              child: GlassTitle(
+                title: 'COMMUNITY',
+              ),
             ),
           ),
           // Content
@@ -67,7 +69,7 @@ class _CommunityViewState extends State<CommunityView> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    _showForm = false;
+                    _showForm = false; // Hide the form when tapped outside
                   });
                 },
                 child: Container(
@@ -102,19 +104,20 @@ class _CommunityViewState extends State<CommunityView> {
             ),
           ),
           // Bottom navigation bar
-          Positioned(
-            left: 20,
-            right: 20,
-            bottom: 20, // Adjust bottom position as needed
-            child: BottomBar(
-              currentIndex: _currentIndex,
-              onTap: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
+          if (!_showForm) // Render bottom bar only if the form is not active
+            Positioned(
+              left: 20,
+              right: 20,
+              bottom: 20, // Adjust bottom position as needed
+              child: BottomBar(
+                currentIndex: _currentIndex,
+                onTap: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
             ),
-          ),
         ],
       ),
     );

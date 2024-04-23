@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class GlassTitle extends StatelessWidget {
   final String title;
+  final IconButton? prefix;
 
-  const GlassTitle({Key? key, required this.title}) : super(key: key);
+  const GlassTitle({Key? key, required this.title, this.prefix})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +18,25 @@ class GlassTitle extends StatelessWidget {
           bottomRight: Radius.circular(20), // Rounded corners for bottom right
         ),
       ),
-      child: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (prefix != null) prefix!,
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ),
-        ),
+          SizedBox(width: prefix != null ? 48 : 0),
+          // Spacer to align title and back button
+        ],
       ),
     );
   }

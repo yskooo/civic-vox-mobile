@@ -1,5 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+
+import 'glass_title.dart';
 
 class GridItem {
   final String label;
@@ -38,227 +39,258 @@ class _CivicFormState extends State<CivicForm> {
   String? _selectedComplaintType;
   GridItem? _selectedGridItem; // Variable to store the selected grid item
   bool _showGrid = false;
-  bool _showForm = false;
+
+  void _handleBackButtonPress() {
+    Navigator.of(context).pop(); // Navigate back to the previous screen
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity, // Adjust height as needed
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Container(
+    return Material(
+      child: Stack(
+        children: [
+          // Background image
+          Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1), // Adjust opacity for glass effect
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withOpacity(0.2)), // Add border for glassmorphism effect
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Add shadow for glass effect
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Text(
-                    'Raise your Complaint',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  // Button to open grid
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _showGrid = true;
-                      });
-                    },
-                    child: Text(
-                      _selectedComplaintType ?? 'Type of Complaint',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black, backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  // Grid of 3x5 boxes (only shown when button is tapped)
-                  if (_showGrid)
-                    GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: 3,
-                      childAspectRatio: 1.5,
-                      children: gridItems.map((item) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedGridItem = item; // Update the selected grid item
-                              _selectedComplaintType = item.label; // Update the selected complaint type
-                              _showGrid = false; // Hide the grid after selection
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              border: Border.all(color: Colors.grey.withOpacity(0.2)), // Adjust border opacity for glass effect
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                if (item.imagePath != null)
-                                  Image.asset(
-                                    item.imagePath!,
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                SizedBox(height: 8),
-                                Text(item.label),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  SizedBox(height: 20),
-
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton(
-                      onPressed: () {
-                        // Placeholder for uploading photo or video from local storage
-                      },
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(Colors.blue.withOpacity(0.6)), // Adjust opacity for glass effect
-                        foregroundColor: MaterialStateProperty.all(Colors.white),
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.camera_alt_outlined, size: 50),
-                          SizedBox(width: 10),
-                          Text(
-                            'Upload Photo or Video',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Write Your Problem',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    maxLines: 3,
-                  ),
-                  SizedBox(height: 20),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: 'Purok Location (Optional)',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    items: [
-                      DropdownMenuItem(
-                        value: 'purok1',
-                        child: Text('Purok 1'),
-                      ),
-                      DropdownMenuItem(
-                        value: 'purok2',
-                        child: Text('Purok 2'),
-                      ),
-                      DropdownMenuItem(
-                        value: 'purok3',
-                        child: Text('Purok 3'),
-                      ),
-                    ],
-                    onChanged: (value) {},
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Landmark or Sign of the Area',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Placeholder for tapping to record mic sound
-                    },
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.mic),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(20),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _handleSubmit();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          'Submit',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              image: DecorationImage(
+                image: AssetImage('assets/images/bg.png'), // Adjust path to your image
+                fit: BoxFit.cover,
               ),
             ),
           ),
-        ),
+          Positioned(
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+              child: GlassTitle(
+                title: 'YOUR COMPLAINT',
+                prefix: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: _handleBackButtonPress, // Call function to handle back button press
+                ),
+              ),
+            ),
+          ),
+
+          // Content
+          Positioned.fill(
+            top: MediaQuery.of(context).padding.top + 60, // Adjust the top position to leave space for the GlassTitle
+            child: Center(
+              child: Container(
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xC9C9C9), // Container color
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // setState(() {
+                          //   _showGrid = true;
+                          // });
+                        },
+                        child: Text(
+                          _selectedComplaintType ?? 'Type of Complaint',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFEFEFEF), // Dropdown color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      // Grid of 3x5 boxes (only shown when button is tapped)
+                      if (_showGrid)
+                        GridView.count(
+                          shrinkWrap: true,
+                          crossAxisCount: 3,
+                          childAspectRatio: 1.5,
+                          children: gridItems.map((item) {
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedGridItem = item; // Update the selected grid item
+                                  _selectedComplaintType = item.label; // Update the selected complaint type
+                                  _showGrid = false; // Hide the grid after selection
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (item.imagePath != null)
+                                      Image.asset(
+                                        item.imagePath!,
+                                        width: 40,
+                                        height: 40,
+                                      ),
+                                    SizedBox(height: 8),
+                                    Text(item.label, style: TextStyle(color: Colors.black)),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      SizedBox(height: 20),
+                      Divider(color: Colors.black), // Divider for visual separation
+                      SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FormFieldWithTitle(
+                            title: 'Write Your Problem',
+                            description: 'Describe your complaint in detail',
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFC9C9C9), // Text form field color
+                              ),
+                              maxLines: 3,
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          FormFieldWithTitle(
+                            title: 'Purok Location (Optional)',
+                            description: 'Select the location where the issue occurred',
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFC9C9C9), // Text form field color
+                              ),
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'purok1',
+                                  child: Text('Purok 1', style: TextStyle(color: Colors.black)),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'purok2',
+                                  child: Text('Purok 2', style: TextStyle(color: Colors.black)),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'purok3',
+                                  child: Text('Purok 3', style: TextStyle(color: Colors.black)),
+                                ),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          FormFieldWithTitle(
+                            title: 'Landmark or Sign of the Area',
+                            description: 'Provide any landmark or sign near the location',
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFC9C9C9), // Text form field color
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Placeholder for tapping to record mic sound
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.blue,
+                              child: Icon(Icons.mic),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(20),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          _handleSubmit();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   void _handleSubmit() {
     widget.onSubmit(); // Call onSubmit function passed from CivicFormView
+  }
+}
+
+class FormFieldWithTitle extends StatelessWidget {
+  final String title;
+  final String description;
+  final Widget child;
+
+  const FormFieldWithTitle({
+    required this.title,
+    required this.description,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        SizedBox(height: 5),
+        Text(
+          description,
+          style: TextStyle(fontSize: 12, color: Colors.grey),
+        ),
+        SizedBox(height: 10),
+        child,
+      ],
+    );
   }
 }

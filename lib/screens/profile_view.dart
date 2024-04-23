@@ -37,9 +37,10 @@ class _ProfileViewState extends State<ProfileView> {
               right: 0,
               child: Container(
                 padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-                child: GlassTitle(title: 'PROFILE'), // Use the GlassTitle widget
+                child: GlassTitle(title: 'PROFILE', prefix: null), // Use the GlassTitle widget without back button
               ),
             ),
+
             // Content
             Padding(
               padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 70), // Adjust top padding according to Glassmorphic title height
