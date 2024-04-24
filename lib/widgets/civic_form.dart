@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'file_upload.dart';
 import 'glass_title.dart';
 
 class GridItem {
@@ -180,24 +181,15 @@ class _CivicFormState extends State<CivicForm> {
                                   ),
                                   filled: true,
                                   fillColor: Color(0xFFC9C9C9),
+                                  hintText: 'Describe the incident',
                                 ),
                                 maxLines: 3,
                               ),
                             ),
                             SizedBox(height: 20),
-                            FormFieldWithTitle(
+                            FileUploadWithTitle(
                               title: 'Add photos or videos',
                               description: 'Photos and Videos help us to find the best staff and tools for your needs as soon as possible.',
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xFFC9C9C9),
-                                ),
-                                maxLines: 3,
-                              ),
                             ),
                             SizedBox(height: 20),
                             Divider(color: Colors.black, thickness: 2),
@@ -246,6 +238,7 @@ class _CivicFormState extends State<CivicForm> {
                                   ),
                                   filled: true,
                                   fillColor: Color(0xFFC9C9C9),
+                                  hintText: 'E.g. "Near Aling Lisa Store"',
                                 ),
                               ),
                             ),

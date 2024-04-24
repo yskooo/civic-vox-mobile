@@ -67,11 +67,11 @@ class _CommunityViewState extends State<CommunityView> {
           if (_showForm)
             Positioned.fill(
               child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _showForm = false; // Hide the form when tapped outside
-                  });
-                },
+                // onTap: () {
+                //   setState(() {
+                //     _showForm = false; // Hide the form when tapped outside
+                //   });
+                // },
                 child: Container(
                   color: Colors.black.withOpacity(0.5),
                   alignment: Alignment.center,
