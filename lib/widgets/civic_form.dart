@@ -243,17 +243,19 @@ class _CivicFormState extends State<CivicForm> {
                               ),
                             ),
                             SizedBox(height: 20),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Placeholder for tapping to record mic sound
-                              },
-                              child: CircleAvatar(
-                                backgroundColor: Colors.blue,
-                                child: Icon(Icons.mic),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(20),
+                            Center(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Call the recordAudio method from AudioRecorder
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.blue,
+                                  child: Icon(Icons.mic),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(20),
+                                ),
                               ),
                             ),
                             SizedBox(height: 20),
