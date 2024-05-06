@@ -10,7 +10,7 @@ class GridItem {
 }
 
 final List<GridItem> gridItems = [
-  GridItem('Emergency'),
+  GridItem('Emergency', imagePath: 'assets/emergency.png'),
   GridItem('Natural Disaster', imagePath: 'assets/natural_disaster.png'),
   GridItem('Unethical Behavior', imagePath: 'assets/unethical_behavior.png'),
   GridItem('Road', imagePath: 'assets/road.png'),

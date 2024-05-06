@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class TrackingCard extends StatelessWidget {
   @override
@@ -75,8 +76,106 @@ class TrackingCard extends StatelessWidget {
             SizedBox(height: 16),
             Divider(color: Colors.grey),
 
+            // Timeline Tiles
+            TimelineTile(
+              alignment: TimelineAlign.manual,
+              lineXY: 0.1,
+              isFirst: true,
+              indicatorStyle: const IndicatorStyle(
+                width: 20,
+                color: Colors.green,
+              ),
+              beforeLineStyle: const LineStyle(
+                color: Colors.grey,
+              ),
+              endChild: const _RightChild(
+                title: 'Arrived at destination',
+                message: 'Your item has arrived at the destination!',
+              ),
+            ),
+            TimelineTile(
+              alignment: TimelineAlign.manual,
+              lineXY: 0.1,
+              indicatorStyle: const IndicatorStyle(
+                width: 20,
+                color: Colors.blue,
+              ),
+              beforeLineStyle: const LineStyle(
+                color: Colors.grey,
+              ),
+              endChild: const _RightChild(
+                title: 'On the way',
+                message: 'Your item is on the way to the destination.',
+              ),
+            ),
+            TimelineTile(
+              alignment: TimelineAlign.manual,
+              lineXY: 0.1,
+              indicatorStyle: const IndicatorStyle(
+                width: 20,
+                color: Colors.yellow,
+              ),
+              beforeLineStyle: const LineStyle(
+                color: Colors.grey,
+              ),
+              endChild: const _RightChild(
+                title: 'Packing',
+                message: 'Your item is being packed.',
+              ),
+            ),
+            TimelineTile(
+              alignment: TimelineAlign.manual,
+              lineXY: 0.1,
+              isLast: true,
+              indicatorStyle: const IndicatorStyle(
+                width: 20,
+                color: Colors.red,
+              ),
+              beforeLineStyle: const LineStyle(
+                color: Colors.grey,
+              ),
+              endChild: const _RightChild(
+                title: 'Order placed',
+                message: 'Your order has been placed.',
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RightChild extends StatelessWidget {
+  const _RightChild({
+    Key? key,
+    required this.title,
+    required this.message,
+  }) : super(key: key);
+
+  final String title;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            message,
+            style: const TextStyle(color: Colors.grey),
+          ),
+        ],
       ),
     );
   }

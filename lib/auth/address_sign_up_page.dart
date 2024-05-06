@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../screens/community_view.dart';
+import 'auth_button.dart';
 import 'auth_form.dart';
 import 'login_page.dart';
 import 'personal_sign_up_page.dart';
-import 'community_view.dart';
 
 class AddressSignUpPage extends StatefulWidget {
   const AddressSignUpPage({Key? key}) : super(key: key);

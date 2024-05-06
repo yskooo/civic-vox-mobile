@@ -1,6 +1,8 @@
 import 'package:app/screens/community_view.dart';
 import 'package:flutter/material.dart';
+import 'auth_button.dart';
 import 'auth_form.dart';
+import 'forgot_password_page.dart';
 import 'user_sign_up_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -99,13 +101,17 @@ class LoginPage extends StatelessWidget {
                         const SizedBox(height: 10),
                         TextButton(
                           onPressed: () {
-                            // Add Forgot Password logic here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                            );
                           },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
+
                         const SizedBox(height: 50),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -150,31 +156,4 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class AuthButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
 
-  const AuthButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF000AFF),
-        minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
