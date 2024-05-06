@@ -22,11 +22,25 @@ class PasswordResetPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  'Set a New Password',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Create a new password. Ensure it differs from previous ones for security',
+                  textAlign: TextAlign.start,
+                ),
                 SizedBox(height: 20),
                 AuthForm(
                   labelText: 'New Password',
                   obscureText: true,
                 ),
+                SizedBox(height: 30),
                 AuthForm(
                   labelText: 'Confirm Password',
                   obscureText: true,
@@ -71,7 +85,7 @@ class PasswordResetConfirmationPage extends StatelessWidget {
               children: [
                 Icon(
                   Icons.check_circle,
-                  size: 50,
+                  size: 100,
                   color: Colors.blue,
                 ),
                 SizedBox(height: 20),

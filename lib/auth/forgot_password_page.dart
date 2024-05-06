@@ -11,16 +11,24 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Forgot Password'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Forgot Password'),
+      // ),
       body: Container(
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.cover,
+          ),
+          ),
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Forgot Your Password?',
+              textAlign: TextAlign.start,
+
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -29,7 +37,7 @@ class ForgotPasswordPage extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               'Enter your email address below to receive a password reset link.',
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
             SizedBox(height: 20),
             // Replace TextFormField with AuthForm for email input

@@ -17,18 +17,31 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('OTP Verification'),
-      ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Enter the OTP sent to your email address.',
-              textAlign: TextAlign.center,
+              'Check your email',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            SizedBox(height: 10),
+            Text(
+              'We sent a reset link to contact@dscode...com enter 5 digit code that mentioned in the email',
+              textAlign: TextAlign.start,
+            ),
+            SizedBox(height: 20),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,8 +85,36 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                 );
                 // } e
               },
-              text: 'Verify OTP',
+              text: 'Verify Code',
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Haven’t got the email yet? ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12, // Adjust font size
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Implement resend email functionality here
+                  },
+                  child: Text(
+                    'Resend Email',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 12, // Adjust font size
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero, // Remove padding
+                  ),
+                ),
+              ],
+            ),
+
           ],
         ),
       ),
