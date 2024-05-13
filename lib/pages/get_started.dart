@@ -39,13 +39,12 @@ class GetStartedPage extends StatelessWidget {
                           },
                           child: Image.asset(
                             'assets/images/logowave.png',
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            height: MediaQuery.of(context).size.width * 0.5,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: MediaQuery.of(context).size.width * 0.9,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     Image.asset(
                       'assets/images/get_started_icons.png',
                       width: MediaQuery.of(context).size.width * 0.8,
@@ -56,7 +55,7 @@ class GetStartedPage extends StatelessWidget {
                       'Civic Vox: Bridging Gaps and Building Resilience for a Safer Barangay',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
                     ),

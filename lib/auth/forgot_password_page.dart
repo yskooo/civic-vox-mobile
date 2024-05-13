@@ -12,7 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text('Forgot Password'),
+      //   title: Text('Forgot Password'),flu
       // ),
       body: Container(
           decoration: BoxDecoration(

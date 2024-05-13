@@ -217,6 +217,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   // Handle logout action
                                 },
                               ),
+                              SizedBox(height: 100),
                             ],
                           ),
                         ),

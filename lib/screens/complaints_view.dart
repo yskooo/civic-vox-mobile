@@ -270,6 +270,7 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 150),
                 ],
               ),
             ),

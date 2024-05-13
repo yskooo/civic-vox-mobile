@@ -38,8 +38,8 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final iconSize = screenWidth * 0.04;
-    final labelStyle = TextStyle(fontSize: 8,);
+    final iconSize = screenWidth * 0.09;
+    final labelStyle = TextStyle(fontSize: 6,);
 
     return Container(
       width: screenWidth,
